@@ -1,4 +1,15 @@
-import { Controller, Post, Body, Get, Put, Param, UseFilters, UsePipes, UseGuards, UseInterceptors } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Put,
+  Param,
+  UseFilters,
+  UsePipes,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 import { DogsService } from './dogs.service';
 import { CreateDogDto } from './dto/create-dog.dto';
 import { Dog } from './interfaces/dog.interface';
@@ -15,7 +26,6 @@ import { LoggingInterceptor } from './interceptor/logging.interceptor';
 import { TransformInterceptor } from './interceptor/transform.interceptor';
 import { ExcludeNullInterceptor } from './interceptor/exclude-null.interceptor';
 import { ErrorsInterceptor } from './interceptor/errors.interceptor';
-import { get } from 'http';
 import { CacheInterceptor } from './interceptor/cache.interceptor';
 
 @Controller('dogs')
@@ -70,7 +80,7 @@ export class DogsController {
     if (id === 1) {
       return `Updating dog(${id}) with name ${updateDogDto.name}`;
     }
-    throw new ForbiddenException;
+    throw new ForbiddenException();
   }
 
   @Post('postAlternative')

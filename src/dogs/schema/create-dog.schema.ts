@@ -5,6 +5,5 @@ export const createDogSchema = Joi.object({
     .min(3)
     .required(),
 
-  age: Joi.number()
-    .integer()
+  age: Joi.number().integer(),
 });
