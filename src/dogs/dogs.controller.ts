@@ -12,7 +12,7 @@ import {
 } from '@nestjs/common';
 import { DogsService } from './dogs.service';
 import { CreateDogDto } from './dto/create-dog.dto';
-import { Dog } from './interfaces/dog.interface';
+import { Dog } from "./interfaces/dog.interface";
 import { UpdateDogDto } from './dto/update-dog.dto';
 import { ForbiddenException } from './exception/forbidden.exception';
 import { HttpExceptionFilter } from './filter/http-exception.filter';
@@ -35,7 +35,8 @@ export class DogsController {
   @Post()
   @UsePipes(new JoiValidationPipe(createDogSchema))
   async create(@Body() createDogDto: CreateDogDto) {
-    this.dogService.create(createDogDto);
+    //this.dogService.create(createDogDto);
+    this.dogService.createFromDto(createDogDto);
   }
 
   @Get()
@@ -92,6 +93,6 @@ export class DogsController {
   @Post('postGuard')
   @Roles('admin')
   async postGuard(@Body() createDogDTO: CreateDogDto) {
-    return this.dogService.create(createDogDTO);
+    //return this.dogService.create(createDogDTO);
   }
 }

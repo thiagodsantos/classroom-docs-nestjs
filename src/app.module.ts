@@ -10,9 +10,10 @@ import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { DogsController } from './dogs/dogs.controller';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [TypeOrmModule.forRoot({
+  imports: [/* TypeOrmModule.forRoot({
     type: 'mysql',
     host: '127.0.0.1',
     port: 3306,
@@ -21,7 +22,7 @@ import { UsersModule } from './users/users.module';
     database: 'nestjs',
     autoLoadEntities: true,
     synchronize: true
-  }) ,DogsModule, AuthModule, UsersModule],
+  }) , */MongooseModule.forRoot('mongodb://localhost/nest'), DogsModule, AuthModule, UsersModule],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
