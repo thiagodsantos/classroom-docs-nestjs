@@ -30,6 +30,7 @@ import { CacheInterceptor } from './interceptor/cache.interceptor';
 import { ConfigService } from '@nestjs/config';
 
 @Controller('dogs')
+@UseInterceptors(CacheInterceptor)
 export class DogsController {
   constructor(private dogService: DogsService, private configService: ConfigService) {}
 
