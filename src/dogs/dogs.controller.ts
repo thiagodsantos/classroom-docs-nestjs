@@ -27,10 +27,11 @@ import { TransformInterceptor } from './interceptor/transform.interceptor';
 import { ExcludeNullInterceptor } from './interceptor/exclude-null.interceptor';
 import { ErrorsInterceptor } from './interceptor/errors.interceptor';
 import { CacheInterceptor } from './interceptor/cache.interceptor';
+import { ConfigService } from '@nestjs/config';
 
 @Controller('dogs')
 export class DogsController {
-  constructor(private dogService: DogsService) {}
+  constructor(private dogService: DogsService, private configService: ConfigService) {}
 
   @Post()
   @UsePipes(new JoiValidationPipe(createDogSchema))
@@ -47,8 +48,9 @@ export class DogsController {
 
   @Get('datas')
   @UseInterceptors(TransformInterceptor)
-  getData(): number {
-    return 2;
+  getData(): string {
+    const dbUser = this.configService.get<string>('DATABASE_PASSWORD');
+    return dbUser;
   }
 
   @Get('null')

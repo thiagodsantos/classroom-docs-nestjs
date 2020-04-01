@@ -11,6 +11,7 @@ import { DogsController } from './dogs/dogs.controller';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [/* TypeOrmModule.forRoot({
@@ -22,7 +23,10 @@ import { MongooseModule } from '@nestjs/mongoose';
     database: 'nestjs',
     autoLoadEntities: true,
     synchronize: true
-  }) , */MongooseModule.forRoot('mongodb://localhost/nest'), DogsModule, AuthModule, UsersModule],
+  }) , */
+  ConfigModule.forRoot({ isGlobal: true }),
+  MongooseModule.forRoot('mongodb://localhost/nest'),
+  DogsModule, AuthModule, UsersModule],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
