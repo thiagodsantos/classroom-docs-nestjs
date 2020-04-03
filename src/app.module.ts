@@ -3,8 +3,9 @@ import {
   NestModule,
   MiddlewareConsumer,
   RequestMethod,
+  CacheModule,
 } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+//import { TypeOrmModule } from '@nestjs/typeorm';
 import { DogsModule } from './dogs/dogs.module';
 import { LoggerMiddleware } from './common/middleware/logger.middleware';
 import { DogsController } from './dogs/dogs.controller';
@@ -24,6 +25,7 @@ import { ConfigModule } from '@nestjs/config';
     autoLoadEntities: true,
     synchronize: true
   }) , */
+  CacheModule.register(),
   ConfigModule.forRoot({ isGlobal: true }),
   MongooseModule.forRoot('mongodb://localhost/nest'),
   DogsModule, AuthModule, UsersModule],
